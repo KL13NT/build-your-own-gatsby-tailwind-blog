@@ -5,6 +5,28 @@
  */
 
 module.exports = {
-  /* Your site config here */
-  plugins: [],
+  siteMetadata: {
+    title: `Blog`,
+    siteUrl: `https://www.gatsbyjs.com`,
+    description: `Blazing fast modern site generator for React`,
+  },
+  plugins: [
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        postCssPlugins: [
+          require("tailwindcss"),
+          require("./tailwind.config.js"),
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/posts`,
+        name: `posts`,
+      },
+    },
+    `gatsby-transformer-remark`,
+  ],
 }
